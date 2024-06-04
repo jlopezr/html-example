@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Pagina de Prueba</title>
+        <script>
+            function main() {
+                console.log("HOLA 1");
+            }
+
+            function bt2_click() {
+                console.log("HOLA 2");
+            }
+
+            function document_load() {
+                main();
+
+                document.getElementById("button1").addEventListener("click", () => {
+                    console.log("HOLA SOY EL BOTON 1");
+                });
+            }
+
+            // Espera a que el documento esté completamente cargado
+            document.addEventListener("DOMContentLoaded", document_load);            
+            
+        </script>
+    </head>
+    <body>
+        <button id="button1">Click me</button>
+        <button onclick="console.log('HOLA SOY EL BOTON 2');bt2_click();">Click me 2</button>
+    </body>    
+</html>

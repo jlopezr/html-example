@@ -1,0 +1,55 @@
+<html>
+
+<head>
+	<script async>
+		async function waitSeconds2(seconds) {
+			console.log("Empieza la funcion");
+			// Convert seconds to milliseconds
+			const milliseconds = seconds * 1000;
+
+			// Promise that resolves after a delay
+			return new Promise(resolve => {
+				setTimeout(() => {
+					console.log(`Waited for ${seconds} seconds`);
+					resolve(`Waited for ${seconds} seconds`);
+				}, milliseconds);
+			});
+
+			console.log("Acaba la funcion");
+		}
+
+		function waitSeconds(seconds) {
+			console.log("Empieza la funcion");
+			// Convert seconds to milliseconds
+			const milliseconds = seconds * 1000;
+
+			setTimeout(() => {
+				console.log("He acabadado de esperar ", seconds, " segundos");
+			}, milliseconds);
+
+			console.log("Acaba la funcion");
+		}
+
+		async function fetchAsync() {
+			console.log("Empieza la funcion");
+			const response = await fetch('https://api.github.com');
+			const data = await response.json();
+			console.log(data);
+			console.log("Acaba la funcion");
+		}
+
+		async function ejemplo() {
+			await waitSeconds2(10);
+			await waitSeconds2(5)
+		}
+
+		async function ejemplo2() {
+			await fetchCategorias();
+			fetchProductos()
+		}
+
+		ejemplo2();
+	</script>
+</head>
+
+</html>

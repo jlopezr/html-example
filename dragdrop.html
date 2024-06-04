@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Drag and Drop Example</title>
+<style>
+  #drag-item {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    color: white;
+    line-height: 100px;
+    text-align: center;
+    cursor: move;
+  }
+  #drop-zone {
+    width: 300px;
+    height: 300px;
+    border: 2px dashed green;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  #drop-zone.over {
+    background-color: lightgreen;
+  }
+</style>
+</head>
+<body>
+<div id="drag-item" draggable="true">Drag me</div>
+<div id="drop-zone">Drop here</div>
+
+<script>
+  const dragItem = document.getElementById('drag-item');
+  const dropZone = document.getElementById('drop-zone');
+
+  dragItem.addEventListener('dragstart', function(event) {
+    event.dataTransfer.setData("text/plain", event.target.id);
+
+    event.target.style.backgroundColor = 'red' // This modifies also the ghost
+
+    // changes the color back to blue after a short delay
+    setTimeout(() => {
+      event.target.style.backgroundColor = 'blue';
+    }, 0);
+
+    console.log('Drag started');
+  });
+
+  dragItem.addEventListener('dragend', function(event) {
+    console.log('Drag ended');
+  });
+
+  dropZone.addEventListener('dragover', function(event) {
+    event.preventDefault();  // Necessary to allow dropping
+    dropZone.classList.add('over');
+    console.log('Drag over drop zone');
+  });
+
+  dropZone.addEventListener('dragleave', function(event) {
+    dropZone.classList.remove('over');
+    console.log('Drag left drop zone');
+  });
+
+  dropZone.addEventListener('drop', function(event) {
+    event.preventDefault();
+    const id = event.dataTransfer.getData("text/plain");
+    const draggableElement = document.getElementById(id);
+    dropZone.appendChild(draggableElement);
+
+    dropZone.classList.remove('over');
+    console.log('Dropped');
+  });
+
+</script>
+</body>
+</html>

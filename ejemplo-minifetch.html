@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fetch JSON Example</title>
+</head>
+<body>
+  <h1>Fetch JSON Example</h1>
+  <div id="data"></div>
+
+  <p>ID:<div id="ID"></div></p>
+  <p>USERID:<div id="USERID"></div></p>
+  <p>TITLE:<div id="TITLE"></div></p>
+  <p>BODY:<div id="BODY"></div></p>
+
+  <script>
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        document.getElementById('data').innerText = JSON.stringify(data, null, 2);
+
+        document.getElementById('ID').innerText = data.id;
+        document.getElementById('USERID').innerText = data.userId;
+        document.getElementById('TITLE').innerText = data.title;
+        document.getElementById('BODY').innerText = data.body;
+
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
+</body>
+</html>

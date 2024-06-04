@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script>
+
+            function espera1segon() {
+                //console.log("De aqui dos segons escriure HOLA")
+                setTimeout(() => {
+                    console.log("HOLA 1 SEGON");
+                }, 1000);               
+
+            }
+
+            function espera2segons() {
+                //console.log("De aqui dos segons escriure HOLA")
+                setTimeout(() => {
+                    console.log("HOLA 2 SEGONS");
+                }, 2000);               
+            }
+
+
+            document.addEventListener("DOMContentLoaded", () => {
+               espera2segons();
+               espera1segon();
+            });
+        </script>
+    </head>
+    <body>
+        <button id="bt1">CLICKAME!</button>
+
+    </body>
+</html>
